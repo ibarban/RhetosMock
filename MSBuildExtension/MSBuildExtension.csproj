@@ -2,11 +2,16 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.1</TargetFramework>
+    <NuspecFile>..\Rhetos.Nuspec</NuspecFile>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.Build.Framework" Version="16.3.0" />
     <PackageReference Include="Microsoft.Build.Utilities.Core" Version="16.3.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Rhetos.targets" IncludeAssets="build" />
   </ItemGroup>
 
 </Project>

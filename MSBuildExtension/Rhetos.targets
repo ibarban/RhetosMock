@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+	<PropertyGroup>
+		<RhetosGeneratedFolder Condition="$(RhetosGeneratedFolder) == ''"	>$(OutDir)Generated\</RhetosGeneratedFolder>
+	</PropertyGroup>
+	<ItemGroup>
+		<Compile Include="Generated\ServerDom.Repositories.cs" />
+		<Compile Include="Generated\ServerDom.Model.cs" />
+		<Compile Include="Generated\ServerDom.Orm.cs" />
+	</ItemGroup>
+	<ItemGroup>
+		<Folder Include="Generated" />
+	</ItemGroup>	
+	<UsingTask TaskName="RhetosGenerateTask" AssemblyFile="bin\MSBuildExtension.dll" />
+	<Target Name="RhetosGenerate" DependsOnTargets="ResolveAssemblyReferences" AfterTargets="ResolveProjectReferences;Restore" BeforeTargets="CoreCompile">
+		<RhetosGenerateTask References="@(ReferencePath)" NugetFolder="$(NuGetPackageFolders)" ResolvedPackagesFile="$(ProjectAssetsFile)" ProjectFullPath="$(MSBuildProjectFullPath)" OutputFolder="$(RhetosGeneratedFolder)" />
+		<Copy SourceFiles="$(RhetosGeneratedFolder)ServerDom.Repositories.cs;$(RhetosGeneratedFolder)ServerDom.Model.cs;$(RhetosGeneratedFolder)ServerDom.Orm.cs;" DestinationFolder="Generated"/>
+	</Target>
+</Project>
